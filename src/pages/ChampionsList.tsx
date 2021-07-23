@@ -4,7 +4,7 @@ import React from "react";
 import styled from "styled-components";
 import Champion from "../components/Champion";
 import ChampionModel from "../models/ChampionModel";
-import ChampionImage from "../assets/icon-champion-n.png";
+import ChampionImage from "../assets/icon-champion-p.png";
 import ChampionTrendItem from "../components/ChampionTrendItem";
 import ChampionTrendHeader from "../components/ChampionTrendHeader";
 import ChampionTrendToolbar from "../components/ChampionTrendToolbar";
@@ -218,7 +218,6 @@ export default class ChampionsList extends React.Component<ChampionListProps, Ch
 }
 
 const ChampionsWrapper = styled.div`
-    background-color: white;
     border-right: 1px solid #e9eff4;
 
     & > .header{
@@ -226,6 +225,7 @@ const ChampionsWrapper = styled.div`
         justify-content: space-between;
         padding: 0 17px;
         border-bottom: 1px solid #e9eff4;
+        background-color: white;
 
         & > .item-wrap{
             display: flex;

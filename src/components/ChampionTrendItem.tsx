@@ -22,6 +22,11 @@ interface ChampionTrendItemProps {
 
 const ChampionTrendItemWrapper = styled(ChampionTrendHeader)<{chamID:number}>`
     background-color: white;
+    border:1px solid #e9eff4;
+
+    &:not(:last-child){
+        border-bottom:none;
+    }
 
     & > .rank {
         font-style: italic;
@@ -39,6 +44,8 @@ const ChampionTrendItemWrapper = styled(ChampionTrendHeader)<{chamID:number}>`
             font-size: 14px;
             line-height: 14px;
             padding: 0 10px;
+            width:50px;
+            box-sizing:border-box;
 
             & > img {
                 margin-right: 2px;
