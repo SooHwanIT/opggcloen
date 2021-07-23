@@ -6,9 +6,9 @@ export default class ChampionTrendModel {
         position: string[];
         winRate: string;
         pickRate: string;
-        benRate: string;
+        banRate: string;
         tierIcon: string;
-
+        // trendType:string;
         constructor(data : ChampionTrendModel){
 
         this.id = data.id;
@@ -18,7 +18,8 @@ export default class ChampionTrendModel {
         this.position = data.position;
         this.winRate = data.winRate;
         this.pickRate = data.pickRate;
-        this.benRate = data.benRate;
+        this.banRate = data.banRate;
         this.tierIcon = data.tierIcon;
+        // this.trendType = data.trendType;
         }
     }

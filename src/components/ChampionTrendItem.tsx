@@ -7,6 +7,7 @@ import classnames from "classnames";
 import tierUP from "../assets/icon-championtier-up.png";
 import tierDown from "../assets/icon-championtier-down.png";
 import tierStay from "../assets/icon-championtier-stay.png";
+import { prototype } from "stream";
 
 
 interface ChampionTrendItemProps {
@@ -18,9 +19,11 @@ interface ChampionTrendItemProps {
     pick: string;
     tier: string;
     rank : string;
+    trendType : string;
+    banRate : string;
 }
 
-const ChampionTrendItemWrapper = styled(ChampionTrendHeader)<{chamID:number}>`
+const ChampionTrendItemWrapper = styled(ChampionTrendHeader)`
     background-color: white;
     border:1px solid #e9eff4;
 
@@ -64,7 +67,6 @@ const ChampionTrendItemWrapper = styled(ChampionTrendHeader)<{chamID:number}>`
             width: 32px;
             height: 32px;
             background-image: url(${Champion32});
-            background-position: 0 -${props =>props.chamID * 32}px;
         }
 
         & > .champ-desc {
@@ -96,14 +98,16 @@ const ChampionTrendItem: React.FC<ChampionTrendItemProps> = (props) => {
     }
 
     return(
-         <ChampionTrendItemWrapper chamID={props.championID}>
+         <ChampionTrendItemWrapper>
+             {/* tier,winratio,pickratio,banratio   ||       */}
+             {/* hidden={this.state.trendType === "banratio"} */}
             <div className="rank">{props.rank}</div>
             <div className="champ">
                 <div className={classnames("change",{up:props.change > 0, down:props.change<0})}>
-                    <img src={getTierChangeIcon()} alt=""/>
-                    {Math.abs(props.change)}
+                    <img hidden={props.trendType !== "tier"} src={getTierChangeIcon()} alt=""/>
+                    <div hidden={props.trendType !== "tier"}>{Math.abs(props.change)}</div>
                 </div>
-                <div className="champ-img">
+                <div className={`champ-img __spc32-${props.championID}`}>
 
                 </div>
                 <div className="champ-desc">
@@ -111,11 +115,19 @@ const ChampionTrendItem: React.FC<ChampionTrendItemProps> = (props) => {
                     <div>{props.position}</div>
                 </div>
             </div>
-            <div className="win">{props.win}</div>
-            <div className="pick">{props.pick}</div>
-            <div className="tier">
+   
+                <div className="win" hidden={props.trendType ==="banratio"|| props.trendType === "pickratio"} style={{color:"#4A90E2"}}>{props.win}</div>
+                <div className="pick" hidden={props.trendType ==="banratio"|| props.trendType === "pickratio"}>{props.pick}</div>
+        
+        
+                <div className="pick" hidden={props.trendType ==="banratio"|| props.trendType !== "pickratio"  } >{props.pick}</div>
+                <div className="win" hidden={props.trendType ==="banratio"|| props.trendType !== "pickratio"  } style={{color:"#4A90E2"}}>{props.win}</div>
+     
+
+            <div className="tier" hidden={props.trendType !== "tier"}>
                 <img src={props.tier} alt=""/>
             </div>
+            <div hidden={props.trendType !=="banratio"}style={{color:"#4A90E2"}}>{props.banRate}</div>
         </ChampionTrendItemWrapper>
          
     )
